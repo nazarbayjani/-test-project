@@ -1,0 +1,50 @@
+
+<html>
+<head>
+<title>DHTML Event Model- ONFOCUS and ONBLUR</title>
+<script language="javascript">
+     var helparray=
+         ["Enter your name in this input box.",
+           "Enter your email address in this input box"+
+           "in the format user@domain.",
+           "check this box if you liked our site.",
+           "In this box,enter any comments you would"+
+           " like us to read.",
+           "this button submits the form to the" +
+           "server-side script",
+           " this button clears the form",
+           "this TEXTAREA provides context-sensitive"+
+           "help.click on any input field or use th TAB"+
+           "key to get more information about the input field."
+          ];
+      function helpText(messageNum)
+       {
+         myform.helpbox.value=helparray[messageNum];
+       }
+</script>
+</head>
+
+<body>
+    
+   <Form ID = "myForm">
+   Name: <input type= "text NAME= "name"
+        ONFOCUS= "helptext(0)" ONBLUR= "helptext(6)"><br>
+   Email: <input type= "text" NAME="email"
+        ONFOCUS ="helptext(1)" ONBLUR= "helptext(6)"><br>
+   click here if you like this site
+   <input type= "checkbox" NAME = "like" 
+        ONFOCUS= "helptext(2)" ONBLUR= "helptext(6)"><br><hr>
+
+   Any comments?<br>
+   <TEXTTAREA NAME= "comments" rows=5 cols=45 
+        ONFOCUS = "helptext(3)" ONBLUR =" texthelp(6)">
+   </TEXTAREA><br>
+   <INPUT TYPE="submit" VALUE ="submit" ONFOCUS ="helptext(4)" ONBLURE="helptext(6)">
+   <INPUT TYPE="reset" VALUE= "reset" ONFOCUS="helptext(5)" ONBLURE= "helptext(6)">
+   <TEXTAREA NAME="helpbox" STYLE ="position:absolute; right:0; top:50;rows=4 cols=45 >
+   This TEXTAREA provides context-sensitive help. click on 
+   any input field or use the TAB key to det more information about the input field.</TEXTAREA>
+  </Form>
+</body>
+</html>
+
