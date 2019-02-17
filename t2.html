@@ -1,0 +1,137 @@
+
+<html>
+<title> Data Binding - Sorting and Filtering </title>
+
+<OBJECT ID = "publications"
+   CLASSID= "CLSID:333C7BC4-460F-11D0-BC04-0080C7055A83">
+   <PARAM NAME = "DataURL" VALUE="DBpublications.txt">
+   <PARAM NAME = "UseHeader" VALUE= "TRUE">
+   <PARAM NAME = "TextQualifer" VALUE= "@">    
+   <PARAM NAME = "FieldDelim" VALUE= "|">
+   <PARAM NAME = "sort" VALUE= "TRUE">
+</OBJECT>
+
+<STYLE>
+        {font-size:9pt; text-decoration:underline;
+         cursor:hand; color:blue}
+CAPTION { cursor:hand;}
+
+SPAN    {cursor:hand:}
+
+</STYLE>
+
+<SCRIPT LANGUAGE = "javascript">
+    var sortoder;
+
+    function resort {column,order}
+    {
+        if (order)
+           sortorder= " ";
+        else
+           sortorder="-";
+
+        if (event.ctrkey) {
+           publications.sort +=";" + sortorder + column;
+           publications.reset();
+        }
+        else {
+           publication.sort= sortorder + column;
+             publications.reset();
+        }
+
+       spansort.innertext = "Current sort: "+ publications.sort;
+
+     }
+
+     function filter( filtertext, filtercolumn)
+     {
+        publications.filter= filtercolumn+ "=" + filtertext;
+        publications.reset();
+        spanfilter.innertext="Current filter: "+ publications.filter;
+      }
+      finction clearALL()
+      {
+         publications.sort = " ";
+         spansort.innerText = "current sort:None";
+         publications.Filter = " ";
+         spanfilter.innertext= "current filter:None;
+         publication.reset();
+       }
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<H1>  Advanced Sorting </H1>
+click on the link next to a column head to sort by that column.
+To sort by more than one column at a time, hold down CTRL while
+you click another sorting link. click on any cell to filter by
+the data of that cell. To clear filter and sort, click on the
+green caption bar.
+
+<TABLE DARASRC = "#Publications" BORDER = 1 CELLSPACING = 0 CELLPADDING=2 
+STYLE = "background- color: papayawhip;">
+
+  <CAPTION STYLE = "background- color: lightgreen; padding: 
+   5"
+     ONCLICK= "clearALL()">
+     <SPAN ID ="spanfilter" STYLE="font-weight:bold;
+     background-color: lavender"> current filter:None </SPAN>
+     <SPAN ID= "spansort" STYLE= "font-weight:bold;
+     backgroung-color:khaki"> curren sort:None </SPAN>
+   </CAPTION>
+   <THEAD>
+   <TR>
+       <TH>Title <br>
+         (<A ONCLICK="resort('Title', true)">
+             ascending </A>
+         (<A ONCLICK="resort('Title', false)">
+             descending</A>)
+       </TH>
+   
+       <TH> Authors <br>
+         (<A ONCLICK="resort('Authors', true)">
+             ascending </A>
+         (<A ONCLICK="resort('Authors', false)">
+	      descending</A>)
+        </TH>
+        <TH> Copyright <br>
+          (<A ONCLICK="resort('Copyright', true)">
+              ascending </A>
+	  (<A ONCLICK="resort('Copyright', false)">
+              descending</A>)
+        </TH>
+
+        <TH> Edition <br>
+          (<A ONCLICK="resort('Edition', true)">
+              ascending </A>
+	  (<A ONCLICK="resort('Edition', false)">
+              descending</A>)
+        </TH>
+
+        <TH> Type <br>
+          (<A ONCLICK="resort('Type', true)">
+              ascending </A>
+	  (<A ONCLICK="resort('Type', false)">
+              descending</A>)
+        </TH>
+    </TR>
+</THEAD>
+
+<TR>
+    <TD> <SPAN DATAFLD="Title" ONCLICK= "filter(this.innertext, 'Title')"></SPAN> </TD>
+    <TD> <SPAN DATAFLD="Authors" ONCLICK= "filter(this.innertext, 'Authors')"></SPAN> </TD>
+    <TD> <SPAN DATAFLD="Copyright" ONCLICK= "filter(this.innertext, 'Copyright')"></SPAN> </TD>
+    <TD> <SPAN DATAFLD="Edition" ONCLICK= "filter(this.innertext, 'Edition')"></SPAN> </TD>
+    <TD> <SPAN DATAFLD="Type" ONCLICK= "filter(this.innertext, 'Type')"></SPAN> </TD>
+
+</TR>
+
+
+</TABLE>
+</BODY>
+</HTML>
+
+ 
+
+
+
